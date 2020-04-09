@@ -1,0 +1,20 @@
+sdk-version: 0.13.55
+name: quickstart
+source: daml
+
+parties:
+  - Alice
+  - Bob
+  - USD_Bank
+  - EUR_Bank
+version: 0.0.1
+exposed-modules:
+  - Iou
+dependencies:
+  - daml-prim
+  - daml-stdlib
+codegen:
+  scala:
+    package-prefix: com.knoldus
+    output-directory: scala-codegen/src/main/scala
+    verbosity: 2
