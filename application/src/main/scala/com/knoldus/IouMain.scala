@@ -100,7 +100,7 @@ object IouMain extends App with StrictLogging {
     // <doc-ref:submit-iou-create-command>
     createCmd = iou.create                                                                                // Creating contract
     _ <- clientUtil.submitCommand(firstParty, issuerWorkflowId, createCmd)
-    _ = logger.info(s"$firstParty created IOU: $iou")
+    _ = logger.info(s"$firstParty created Contact: $iou")
     _ = logger.info(s"$firstParty sent create command: $createCmd")
     // </doc-ref:submit-iou-create-command>
 
@@ -115,8 +115,7 @@ object IouMain extends App with StrictLogging {
     exerciseCmd = iouContract.contractId.exerciseUpdateTelephone(actor = firstParty, newTelephone = "00000")        // iouconarct -> fetched , Format = exercise+choice
     // </doc-ref:iou-exercise-transfer-cmd>
     _ <- clientUtil.submitCommand(firstParty, issuerWorkflowId, exerciseCmd)                                  // Submitting exercise command
-    _ = logger.info(s"$firstParty sent exercise command: $exerciseCmd")
-    _ = logger.info(s"$firstParty transferred IOU: $iouContract to: $secondParty")
+    _ = logger.info(s"$firstParty sent exercise command to change Number: $exerciseCmd")
 
     tx1 <- clientUtil.nextTransaction(firstParty, offset1)(amat)                                             // Fetching transaction
     _ = logger.info(s"$firstParty received final transaction: $tx1")
